@@ -1,9 +1,10 @@
 import React from "react";
+import Navbar from "./Navbar";
 
 const App = () => {
 	return (
 		<div>
-			<h1>Adarsh Pandey</h1>
+			<Navbar />
 		</div>
 	);
 };
