@@ -1,0 +1,22 @@
+.App {
+	text-align: center;
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	flex-direction: column;
+	min-height: 100vh;
+	color: aliceblue;
+	background-color:  lightseagreen;
+}
+
+button {
+  color: #FFFFFF;
+  padding: 0.5rem 0.8rem;
+  width: 300px;
+  margin: 0.8rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  border-radius: 10px;
+  background-color: darkcyan;
+  outline: none;
+}
