@@ -5,15 +5,15 @@ const Provider = (props) => {
 	const [mission, setMission] = useState({
 		mName: "Go to Russia",
 		agent: "007",
-		accept: false,
+		accept: "NO",
 	});
 
 	return (
 		<myContextPackage.Provider
 			value={{
 				data: mission,
-				isMissionAccepted: () => {
-					setMission({ ...mission, accept: true });
+				acceptMission: () => {
+					setMission({ ...mission, accept: "ACCEPTED" });
 				},
 			}}
 		>
@@ -21,3 +21,5 @@ const Provider = (props) => {
 		</myContextPackage.Provider>
 	);
 };
+
+export default Provider;
