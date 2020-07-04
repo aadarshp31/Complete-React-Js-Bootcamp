@@ -2,7 +2,7 @@ const AppTheme = {
     light:{
         textColor: "#000000",
         backgroundColor: "#ffffff",
-        border: "1px solid #000000"
+        border: "1px solid #c1c1c1"
     },
     dark:{
         textColor: "#ffffff",
