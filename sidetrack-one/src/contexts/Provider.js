@@ -1,22 +1,24 @@
 import React, { useState } from "react";
 import PackageContext from "./Context";
 
-const provider = (props) => {
+const Provider = (props) => {
 	const [mission, setMission] = useState({
 		mname: "Go to Russia",
-		agent: 007,
+		agent: "007",
 		accept: false,
 	});
 	return (
 		<PackageContext.Provider
-			value={[
+			value={{
 				mission,
-				(acceptMission = () => {
+				acceptMission: () => {
 					setMission({ ...mission, accept: true });
-				}),
-			]}
+				},
+			}}
 		>
 			{props.children}
 		</PackageContext.Provider>
 	);
 };
+
+export default Provider;
