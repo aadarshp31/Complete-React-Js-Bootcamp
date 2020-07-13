@@ -7,22 +7,25 @@ import AppTheme from "./theme/AppTheme";
 const App = () => {
 	const theme = useContext(ThemeContext);
 	const [themeMode, setThemeMode] = useState(theme); //Acting as a Global State
-
 	const currentTheme = AppTheme[themeMode];
 	return (
 		<ThemeContext.Provider value={[themeMode, setThemeMode]}>
 			<div
 				style={{
-					backgroundColor: currentTheme.backgroundColor,
-					color: currentTheme.color,
+					...currentTheme,
 					height: "100vh",
 					width: "100vw",
 					position: "absolute",
 					top: "0",
-					transition: "background-color 0.5s ease-in, color 0.5s ease-in"
 				}}
 			>
-				<h1>Theme Switcher App</h1>
+				<h1
+					style={
+						themeMode === "dark" ? { color: "#EA7773" } : { color: "#000000" }
+					}
+				>
+					Theme Switcher App
+				</h1>
 				<HeroSection>
 					<ThemeToggler />
 				</HeroSection>
