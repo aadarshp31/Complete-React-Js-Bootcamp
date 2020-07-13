@@ -10,6 +10,7 @@ const HeroSection = (props) => {
 			style={{
 				backgroundColor: currentTheme.backgroundColor,
 				color: currentTheme.color,
+				transition: "background-color 0.5s ease-in, color 0.5s ease-in"
 			}}
 		>
 			<h3>Context API Theme Toggler</h3>
