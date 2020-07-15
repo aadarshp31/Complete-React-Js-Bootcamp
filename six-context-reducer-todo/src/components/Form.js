@@ -13,6 +13,24 @@ import {
 } from "reactstrap";
 
 const TodoForm = () => {
+    const [todoString, setTodoString] = useState("");
+    const { dispatch } = useContext(TodoContext);
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        if (todoString === "") {
+            return alert("Please enter a Todo!");
+        }
+        const todo = {
+            todoString,
+            id: v4()
+        }
+        dispatch({
+            type: ADD_TODO,
+            payload: todo
+        })
+        setTodoString("");
+    }
     return (
         <Form>
             <FormGroup>
@@ -21,15 +39,16 @@ const TodoForm = () => {
                         type="text"
                         name="todo"
                         id="todo"
-                    //TODO: value, onChange
+                        value={todoString}
+                        onChange={e => setTodoString(e.target.value)}
                     />
                     <InputGroupAddon
                         addonType="append"
                     >
                         <Button
                             color="info"
-                            //TODO: onClick
-                            >Add Todo</Button>
+                            onClick={handleSubmit}
+                        >Add Todo</Button>
                     </InputGroupAddon>
                 </InputGroup>
             </FormGroup>
