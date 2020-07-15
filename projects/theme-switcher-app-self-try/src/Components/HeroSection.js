@@ -20,7 +20,7 @@ const HeroSection = (props) => {
 				pariatur laudantium maiores explicabo a neque earum excepturi inventore
 				modi suscipit?
 			</p>
-			<button>Click me</button>
+			<button style={{...currentTheme.button}}>Click me</button>
 			{props.children}
 		</div>
 	);

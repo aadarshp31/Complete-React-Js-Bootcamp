@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
-import "./App.css";
 import ThemeContext from "./Context/ThemeContext";
 import HeroSection from "./Components/HeroSection";
 import ThemeToggler from "./Components/ThemeToggler";
 import AppTheme from "./theme/AppTheme";
+import "./App.css";
 const App = () => {
 	const theme = useContext(ThemeContext);
 	const [themeMode, setThemeMode] = useState(theme); //Acting as a Global State
