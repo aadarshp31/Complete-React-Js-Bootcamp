@@ -8,6 +8,7 @@
 
 body {
   background: url(./img/double-bubble-dark.png);
+  background-color: darkslategrey;
 }
 h1 {
   text-align: center;
@@ -27,6 +28,22 @@ form {
   width: 80vw;
   margin: 0 auto;
   border-radius: 8px;
+}
+.todo-item{
+  animation-fill-mode: both;
+  animation: fadein 500ms ease-out;
+}
+@keyframes bounce {
+  from {
+    left: -100%;
+  }
+  to {
+    left: 0px;
+  }
+ }
+ @keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 .form-group {
