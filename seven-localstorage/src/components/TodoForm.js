@@ -6,7 +6,6 @@ import {
     InputGroup,
     InputGroupAddon,
     Button,
-    Container
 } from "reactstrap";
 import { v4 } from "uuid";
 
@@ -38,10 +37,10 @@ const TodoForm = ({ addTodos }) => {
                         value={todoString}
                         onChange={e => setTodoString(e.target.value)}
                     >
-                        <InputGroupAddon type="append">
-                            <Button color="dark" onSubmit={handleSubmit}></Button>
-                        </InputGroupAddon>
                     </Input>
+                    <InputGroupAddon addonType="append">
+                        <Button color="dark" onSubmit={handleSubmit} className="addtodo-btn">Add Todo</Button>
+                    </InputGroupAddon>
                 </InputGroup>
             </FormGroup>
         </Form>
