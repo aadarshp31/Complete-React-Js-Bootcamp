@@ -8,12 +8,29 @@ import TodoForm from './components/TodoForm';
 const App = () => {
   const [todos, setTodos] = useState([]);
 
+  //Load todos from localstorage
   useEffect(() => {
     const localTodos = localStorage.getItem("todos");
+    console.log({localStorage})
     if(localTodos){
       setTodos(JSON.parse(localTodos));
     }
   }, [])
+
+  //Method to add todos to the 'todos' state
+  const addTodos = todo => {
+    setTodos([...todos, todo]);
+  }
+
+  //Save the todos to the localStorage
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos])
+
+  //Method to mark todos as complete
+  const markComplete = id => {
+    setTodos(todos.filter(todo => todo.id !== id));
+  }
 
   return (
     <Container type="fluid">
