@@ -39,7 +39,7 @@ const TodoForm = ({ addTodos }) => {
                     >
                     </Input>
                     <InputGroupAddon addonType="append">
-                        <Button color="dark" onSubmit={handleSubmit} className="addtodo-btn">Add Todo</Button>
+                        <Button color="dark" onClick={handleSubmit} className="addtodo-btn">Add Todo</Button>
                     </InputGroupAddon>
                 </InputGroup>
             </FormGroup>
