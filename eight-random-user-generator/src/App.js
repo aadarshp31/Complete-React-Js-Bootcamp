@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import { Container, Row, Col } from "reactstrap";
 import './App.css';
 import Axios from "axios";
+import MyCard from './Card';
 
 function App() {
   const [details, setDetails] = useState({});
@@ -19,9 +20,13 @@ function App() {
 
 
   return (
-    <div className="App">
-      
-    </div>
+    <Container fluid className="p-4 bg-primary App">
+      <Row>
+        <Col md={4} className="offset-md-4 mt-4">
+          <MyCard details={details}/>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 

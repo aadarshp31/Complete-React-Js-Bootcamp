@@ -2,11 +2,11 @@ import React from "react";
 import { Card, CardBody, CardTitle, CardText } from "reactstrap";
 import { FaEnvelope, FaMapMarked, FaPhone } from "react-icons/fa";
 
-const Card = ({ details }) => {
+const MyCard = ({ details }) => (
     <Card>
         <CardBody className="text-center">
             <img
-                src={details.picture.large} 
+                src={details.picture?.large} 
                 height="150" 
                 width="150" 
                 className="rounded-circle img-thumbnail border-danger" 
@@ -14,6 +14,6 @@ const Card = ({ details }) => {
                 />
         </CardBody>
     </Card>
-}
+)
 
-export default Card;
+export default MyCard;
