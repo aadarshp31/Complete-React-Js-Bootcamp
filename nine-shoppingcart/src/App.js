@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import logo from './logo.svg';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 
 const App = () => {
@@ -31,6 +32,8 @@ const App = () => {
     // Add item to cart
     setCart([...cart, item]);
   }
+
+  // 
 
 
   return (
