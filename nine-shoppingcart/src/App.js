@@ -32,16 +32,6 @@ const App = () => {
     setCart([...cart, item]);
   }
 
-  toast("Item is already present in cart!", {
-    position: "top-right",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    type: "error"
-  })
 
   return (
     <div className="App">
