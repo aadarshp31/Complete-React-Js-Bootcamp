@@ -50,7 +50,9 @@ const App = () => {
 
   // Method to remove item form cart
   const removeItem = item => {
-    setCart(cart.filter(itemInCart => { itemInCart.id !== item.id }));
+    setCart(cart.filter(itemInCart => { 
+      return itemInCart.id !== item.id
+    }));
   }
 
 
