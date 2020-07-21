@@ -33,7 +33,25 @@ const App = () => {
     setCart([...cart, item]);
   }
 
-  // 
+  // Method to buy item
+  const buyItem = () => {
+    setCart([])
+    toast("Item purchase successful!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      type: "success"
+    })
+  }
+
+  // Method to remove item form cart
+  const removeItem = item => {
+    setCart(cart.filter(itemInCart => { itemInCart.id !== item.id }));
+  }
 
 
   return (
