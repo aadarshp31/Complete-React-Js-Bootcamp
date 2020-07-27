@@ -20,9 +20,15 @@ const PurchasePage = ({addToCart}) => {
         })
     }
 
+    // Fetching photos from local api.
     const fetchPhotosLocal = async () => {
         const { data } = await Axios.get(localUrl);
     }
+
+    // Fetching data from api at the time of app load
+    useEffect(() => {
+        fetchPhotos()
+    }, [])
 
      
     return();
