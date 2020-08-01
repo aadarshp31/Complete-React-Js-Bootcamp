@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { random, commerce } from 'faker';
 import { Container, Col, Row } from "reactstrap";
+import CardItem from "./CardItem";
 
 // Setting up entities for making api request
 const apiKey = process.env.REACT_APP_API_KEY;
@@ -41,17 +42,11 @@ const PurchasePage = ({ addToCart }) => {
         <Container fluid>
             <h1 className="text-info text-center">Buy Page</h1>
             <Row>
-                <Col>
                     {products.map(product => (
-                        <div key={product.id}>
-                            <span>{product.productName}</span>
-                            <br />
-                            <span>{product.productPrice}</span>
-                            <br />
-                            <br />
-                        </div>
+                        <Col key={product.id} xl={3} md={4}>
+                            <CardItem product={product} addToCart={addToCart} />
+                        </Col>
                     ))}
-                </Col>
             </Row>
         </Container>
     );
