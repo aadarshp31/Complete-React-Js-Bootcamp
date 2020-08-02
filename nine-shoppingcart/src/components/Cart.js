@@ -40,6 +40,21 @@ const Cart = ({ cart, buyItem, removeItem }) => {
                     </ListGroupItem>
                 ))}
             </ListGroup>
+            {/* Conditional Rendering */}
+            {cart.length>0 ? (
+                <Card className="text-center my-3">
+                    <CardHeader>Grand Total</CardHeader>
+                    <CardBody>
+                        Total amount for {cart.length} items is {amount}
+                    </CardBody>
+                    <CardFooter>
+                        <Button color="success" onClick={buyItem}>Make Payment</Button>
+                    </CardFooter>
+                </Card>
+            ) : (
+                <h5 className="text-warning">Cart is empty!</h5>
+            )}
+
         </Container>
     );
 }
