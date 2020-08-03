@@ -24,6 +24,7 @@ const Cart = ({ cart, buyItem, removeItem }) => {
             <ListGroup>
                 {cart.map(item => (
                     <ListGroupItem key={item.id}>
+                        <Row>
                         <Col>
                             <img
                                 height={80}
@@ -35,8 +36,9 @@ const Cart = ({ cart, buyItem, removeItem }) => {
                                 {item.productName}
                             </div>
                             <span>Price: {item.productPrice}</span>
-                            <Button color="danger" onClick={() => removeItem(item.id)}>Remove Item</Button>
+                            <Button color="danger" onClick={() => removeItem(item)}>Remove Item</Button>
                         </Col>
+                        </Row>
                     </ListGroupItem>
                 ))}
             </ListGroup>
