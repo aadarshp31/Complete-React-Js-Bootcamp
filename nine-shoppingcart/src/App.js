@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import "bootstrap/dist/css/bootstrap.min.css";
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import PurchasePage from './components/PurchasePage';
+import { Container, Col, Row } from "reactstrap";
+import Cart from './components/Cart';
 
 const App = () => {
   const [cart, setCart] = useState([]);
@@ -58,9 +59,17 @@ const App = () => {
 
 
   return (
-    <div className="App">
-      <PurchasePage addToCart={addToCart} />
-    </div>
+    <Container fluid>
+      <ToastContainer/>
+      <Row>
+        <Col md="8">
+          <PurchasePage addToCart={addToCart} />
+        </Col>
+        <Col md="4">
+          <Cart cart={cart} buyItem={buyItem} removeItem={removeItem} />
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
