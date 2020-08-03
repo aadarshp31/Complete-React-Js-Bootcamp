@@ -43,7 +43,7 @@ const PurchasePage = ({ addToCart }) => {
             <h1 className="text-info text-center">Buy Page</h1>
             <Row>
                     {products.map(product => (
-                        <Col key={product.id} xl={3} md={4}>
+                        <Col key={product.id} xl={4} md={6}>
                             <CardItem product={product} addToCart={addToCart} />
                         </Col>
                     ))}
