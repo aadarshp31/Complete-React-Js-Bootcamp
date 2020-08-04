@@ -10,6 +10,11 @@ import NotFound from "./components/NotFound";
 
 const routing = (
   <Router>
+    <nav>
+      <h5><Link to="/">Home</Link></h5>
+      <h5><Link to="/user">User</Link></h5>
+      <h5><Link to="/visit">Visit</Link></h5>
+    </nav>
     <Switch>
       <Route exact path="/" component={App} />
       <Route path="/user" component={User} />
