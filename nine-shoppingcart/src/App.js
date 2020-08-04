@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './App.css';
 import PurchasePage from './components/PurchasePage';
 import { Container, Col, Row } from "reactstrap";
 import Cart from './components/Cart';
