@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+// Context
+import { UserContext } from "./context/UserContext";
 
 // Bootstrap css for reactstrap
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -10,7 +12,7 @@ import { BrowserRouter as Router, Switch, Link, Route } from "react-router-dom";
 
 // Toast
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/reactToastify.min.css";
+import "react-toastify/dist/ReactToastify.min.css";
 
 // Fireabase
 import firebase from "firebase/app";
@@ -25,25 +27,20 @@ import PageNotFound from "./pages/PageNotFound";
 const App = () => {
 
   // Default state is set to null as firebase Auth requires it to be null to work
-  const [user, SetUser] = useState(null);
+  const [user, setUser] = useState(null);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <ToastContainer />
+      <UserContext.Provider value={{user, setUser}} >
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/signup" component={Signup} />
+          <Route path="/signin" component={Signin} />
+          <Route path="*" component={PageNotFound} />
+        </Switch>
+      </UserContext.Provider>
+    </Router>
   );
 }
 
