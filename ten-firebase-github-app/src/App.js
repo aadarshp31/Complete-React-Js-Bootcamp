@@ -23,6 +23,7 @@ import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
 import PageNotFound from "./pages/PageNotFound";
+import Footer from './layout/Footer';
 
 const App = () => {
 
@@ -39,6 +40,7 @@ const App = () => {
           <Route path="/signin" component={Signin} />
           <Route path="*" component={PageNotFound} />
         </Switch>
+        <Footer />
       </UserContext.Provider>
     </Router>
   );
