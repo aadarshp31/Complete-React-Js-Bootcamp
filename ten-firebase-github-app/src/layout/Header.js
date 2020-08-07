@@ -36,19 +36,19 @@ const Header = () => {
         <Nav className="ml-auto" navbar>
           {context.user ? (
             <NavItem>
-              <NavLink tag={Link} to="/" className="text-light">
+              <NavLink tag={Link} to="/logout" className="text-light">
                 Logout
               </NavLink>
             </NavItem>
           ) : (
             <Fragment>
               <NavItem>
-                <NavLink tag={Link} to="/" className="text-light">
+                <NavLink tag={Link} to="/signup" className="text-light">
                   Signup
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink tag={Link} to="/" className="text-light">
+                <NavLink tag={Link} to="/signin" className="text-light">
                   Signin
                 </NavLink>
               </NavItem>
