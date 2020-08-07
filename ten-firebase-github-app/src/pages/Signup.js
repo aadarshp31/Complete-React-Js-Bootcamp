@@ -19,6 +19,7 @@ import {
 import { Redirect } from "react-router-dom";
 
 const Signup = () => {
+  const context = useContext(UserContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -28,7 +29,7 @@ const Signup = () => {
       .createUserWithEmailAndPassword(email, password)
       .then(res => {
         console.log(res);
-        UserContext.setUser({ email: res.user?.email, uid: res.user?.uid });
+        context.setUser({ email: res.user?.email, uid: res.user?.uid });
       })
       .catch(err => {
         console.log(err);
@@ -43,7 +44,7 @@ const Signup = () => {
     handleSignUp();
   };
 
-  if (UserContext.user?.uid) {
+  if (context.user?.uid) {
     return <Redirect to="/" />;
   }
 
