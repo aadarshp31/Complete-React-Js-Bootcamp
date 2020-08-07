@@ -25,10 +25,8 @@ const Header = () => {
 
   return (
     <Navbar color="info" light expand="md">
-      <NavbarBrand>
-        <Link to="/" className="text-light">
+      <NavbarBrand tag={Link} to="/" className="text-light">
           Github API App
-        </Link>
       </NavbarBrand>
       <NavbarText className="text-light">
         {context.user?.email ? context.user.email : ""}
