@@ -25,6 +25,10 @@ import Signin from "./pages/Signin";
 import PageNotFound from "./pages/PageNotFound";
 import Footer from './layout/Footer';
 import Header from './layout/Header';
+import firebaseConfig from "./config/firebaseConfig";
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
 const App = () => {
 
