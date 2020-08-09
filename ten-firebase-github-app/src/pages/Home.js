@@ -9,6 +9,7 @@ import {
   Button,
   InputGroup,
   InputGroupAddon,
+  Form,
 } from "reactstrap";
 
 import UserCard from "../components/UserCard";
@@ -22,10 +23,12 @@ const Home = () => {
   const [query, setQuery] = useState("");
   const [user, setUser] = useState(null);
 
-  const fetchGithubUser = async () => {
+  const fetchGithubUser = async (e) => {
+    e.preventDefault();
     try {
-      const { data } = Axios.get(`https://api.github.com/users/${query}`);
+      const { data } = await Axios.get(`https://api.github.com/users/${query}`);
       setUser(data);
+      console.log(data)
     } catch (err) {
       toast(err.message, {
         type: "error",
@@ -33,27 +36,32 @@ const Home = () => {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     fetchGithubUser();
-  }
+  };
 
   return (
     <Container>
       <Row className=" mt-3">
         <Col md="5">
-          <InputGroup>
-            <Input
-              type="text"
-              value={query}
-              onChange={e => setQuery(e.target.value)}
-              placeholder="Please provide the username"
-              autoFocus
-              required
-            />
-            <InputGroupAddon addonType="append">
-              <Button color="primary">Fetch User</Button>
-            </InputGroupAddon>
-          </InputGroup>
+          <Form>
+            <InputGroup>
+              <Input
+                type="text"
+                value={query}
+                onChange={e => setQuery(e.target.value)}
+                placeholder="Please provide the username"
+                autoFocus
+                required
+              />
+              <InputGroupAddon addonType="append">
+                <Button color="primary" type="submit" onClick={fetchGithubUser}>
+                  Fetch User
+                </Button>
+              </InputGroupAddon>
+            </InputGroup>
+          </Form>
         </Col>
         <Col md="7"></Col>
       </Row>
