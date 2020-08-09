@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Axios } from "axios";
+import Axios from "axios";
 import { ListGroup, ListGroupItem } from "reactstrap";
+import { Link } from "react-router-dom";
 
 const Repos = ({repos_url}) => {
     const [repos, setRepos] = useState([])
@@ -18,9 +19,9 @@ const Repos = ({repos_url}) => {
         <ListGroup>
             {repos.map(repo => (
                 <ListGroupItem key={repo.id}>
-                    <div className="text-primary">Name: {repo.name}</div>
-                    <div className="text-primary">Description: {repo.description}</div>
-                    <div className="text-primary">Link: {repo.html_url}</div>
+                    <div className="text-info"><span className="text-secondary">Name: </span> {repo.name}</div>
+                    <div className="text-info"><span className="text-secondary">Description: </span>{"\n" + repo.description}</div>
+                    <div className="text-info"><span className="text-secondary">Link: </span><Link to={repo.html_url}>{repo.html_url}</Link></div>
                     <div className="text-secondary">Languages: {repo.language}</div>
                 </ListGroupItem>
             ))}
