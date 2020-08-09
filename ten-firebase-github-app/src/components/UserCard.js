@@ -9,7 +9,6 @@ const UserCard = ({ user }) => {
         <div className="text-primary">{user.name}</div>
         <div className="text-primary">{user.location}</div>
         <div className="text-primary">Website: {user.blog}</div>
-        <div className="text-primary">{user.hireable ? "Yes" : "No"}</div>
         <div className="text-primary">
           Available for hire: {user.hireable ? "Yes" : "No"}
         </div>
