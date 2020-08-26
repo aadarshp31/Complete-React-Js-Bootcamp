@@ -13,14 +13,14 @@ import {
   Button,
   Spinner,
   Row,
-  Col
+  Col,
 } from "reactstrap";
 
 // to compress image before uploading to the server
 import { readAndCompressImage } from "browser-image-resizer";
 
 // configs for image resizing
-import { imageConfig } from "../utils/config"
+import { imageConfig } from "../utils/config";
 
 import { MdAddCircleOutline } from "react-icons/md";
 
@@ -72,28 +72,29 @@ const AddContact = () => {
 
   // To upload image to firebase and then set the the image link in the state of the app
   const imagePicker = async e => {
-    try{
-      let file = e.target.files[0]
+    try {
+      let file = e.target.files[0];
       let metaData = {
-        contentType: file.type
-      }
+        contentType: file.type,
+      };
       let resizedImage = await readAndCompressImage(file, imageConfig);
 
-      let storageRef = await firebase.storage.ref()
+      let storageRef = await firebase.storage.ref();
 
       const uploadTask = storageRef
-        .child('images/' + file.name + v4())
-        .put(resizedImage, metaData)
+        .child("images/" + file.name + v4())
+        .put(resizedImage, metaData);
 
       uploadTask.on(
         firebase.storage.TaskEvent.STATE_CHANGED,
         DataSnapshot => {
           setIsUploading(true);
-          let progress = (DataSnapshot.bytesTransferred/DataSnapshot.totalBytes) * 100;
+          let progress =
+            (DataSnapshot.bytesTransferred / DataSnapshot.totalBytes) * 100;
 
           switch (DataSnapshot.state) {
             case firebase.storage.TaskState.PAUSED:
-              setIsUploading(false)
+              setIsUploading(false);
               console.log("Uploading is paused!");
               break;
             case firebase.storage.TaskState.RUNNING:
@@ -101,36 +102,35 @@ const AddContact = () => {
               break;
             case firebase.storage.TaskState.CANCELED:
               setIsUploading(false);
-              toast('File upload cancelled!', {type: "error"});
+              toast("File upload cancelled!", { type: "error" });
               break;
             case firebase.storage.TaskState.ERROR:
               setIsUploading(false);
-              toast('Error occurred while file upload', {type: "error"});
+              toast("Error occurred while file upload", { type: "error" });
               break;
             case firebase.storage.TaskState.SUCCESS:
               setIsUploading(false);
-              toast('File uploaded successfully!', {type: "success"})
+              toast("File uploaded successfully!", { type: "success" });
               break;
             default:
               break;
           }
         },
         error => {
-          toast("Something went wrong in 'uploadTask'", {type: "error"})
+          toast("Something went wrong in 'uploadTask'", { type: "error" });
         },
         () => {
-          uploadTask.snapshot.ref.getDownloadURL()
-          .then(downloadURL => {
-            setDownloadUrl(downloadURL)
-          })
-          .catch(error => console.error(error))
+          uploadTask.snapshot.ref
+            .getDownloadURL()
+            .then(downloadURL => {
+              setDownloadUrl(downloadURL);
+            })
+            .catch(error => console.error(error));
         }
-      )
-
-
-    }catch(error){
+      );
+    } catch (error) {
       console.error(error);
-      toast("Something went wrong", {type: "error"});
+      toast("Something went wrong", { type: "error" });
     }
   };
 
@@ -141,8 +141,13 @@ const AddContact = () => {
         .database()
         .ref("contacts/" + v4())
         .set({
-          name, email, phoneNumber, star, address, picture: downloadUrl
-        })
+          name,
+          email,
+          phoneNumber,
+          star,
+          address,
+          picture: downloadUrl,
+        });
     } catch (error) {
       console.error(error);
     }
@@ -155,11 +160,16 @@ const AddContact = () => {
         .database()
         .ref("contacts/" + contactToUpdateKey)
         .set({
-          name, email, phoneNumber, star, address, picture: downloadUrl
-        })
+          name,
+          email,
+          phoneNumber,
+          star,
+          address,
+          picture: downloadUrl,
+        });
     } catch (error) {
       console.error(error);
-      toast("Error occurred while updating contact", {type: "error"});
+      toast("Error occurred while updating contact", { type: "error" });
     }
   };
 
@@ -175,7 +185,7 @@ const AddContact = () => {
     dispatch({
       type: CONTACT_TO_UPDATE,
       payload: null,
-      key: null
+      key: null,
     });
 
     // after adding/updating contact then sending to the contacts
