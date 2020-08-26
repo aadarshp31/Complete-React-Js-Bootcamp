@@ -136,7 +136,6 @@ const AddContact = () => {
 
   // setting contact to firebase DB
   const addContact = async () => {
-    //TODO: add contact method
     try {
       firebase
         .database()
@@ -151,7 +150,17 @@ const AddContact = () => {
 
   // to handle update the contact when there is contact in state and the user had came from clicking the contact update icon
   const updateContact = async () => {
-    //TODO: update contact method
+    try {
+      firebase
+        .database()
+        .ref("contacts/" + contactToUpdateKey)
+        .set({
+          name, email, phoneNumber, star, address, picture: downloadUrl
+        })
+    } catch (error) {
+      console.error(error);
+      toast("Error occurred while updating contact", {type: "error"});
+    }
   };
 
   // firing when the user click on submit button or the form has been submitted
