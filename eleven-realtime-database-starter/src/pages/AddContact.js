@@ -147,7 +147,9 @@ const AddContact = () => {
           star,
           address,
           picture: downloadUrl,
-        });
+        }).then(() => {
+          toast("Contact Added Successfully!", {type: "success"});
+        })
     } catch (error) {
       console.error(error);
     }
@@ -166,6 +168,9 @@ const AddContact = () => {
           star,
           address,
           picture: downloadUrl,
+        })
+        .then(() => {
+          toast("Contact Updated Successfully!", { type: "success" });
         });
     } catch (error) {
       console.error(error);
