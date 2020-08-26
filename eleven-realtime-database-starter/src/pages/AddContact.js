@@ -20,7 +20,7 @@ import {
 import { readAndCompressImage } from "browser-image-resizer";
 
 // configs for image resizing
-//TODO: add image configurations
+import { imageConfig } from "../utils/config"
 
 import { MdAddCircleOutline } from "react-icons/md";
 
@@ -72,7 +72,66 @@ const AddContact = () => {
 
   // To upload image to firebase and then set the the image link in the state of the app
   const imagePicker = async e => {
-    // TODO: upload image and set D-URL to state
+    try{
+      let file = e.target.files[0]
+      let metaData = {
+        contentType: file.type
+      }
+      let resizedImage = await readAndCompressImage(file, imageConfig);
+
+      let storageRef = await firebase.storageRef()
+
+      const uploadTask = storageRef
+        .child('images/' + file.name)
+        .put(resizedImage, metaData)
+
+      uploadTask.on(
+        firebase.storage.TaskEvent.STATE_CHANGED,
+        DataSnapshot => {
+          setIsUploading(true);
+          let progress = (DataSnapshot.bytesTransferred/DataSnapshot.totalBytes) * 100;
+
+          switch (DataSnapshot.state) {
+            case firebase.storage.TaskState.PAUSED:
+              setIsUploading(false)
+              console.log("Uploading is paused!");
+              break;
+            case firebase.storage.TaskState.RUNNING:
+              console.log("File uploading is in progress...");
+              break;
+            case firebase.storage.TaskState.CANCELED:
+              setIsUploading(false);
+              toast('File upload cancelled!', {type: "error"});
+              break;
+            case firebase.storage.TaskState.ERROR:
+              setIsUploading(false);
+              toast('Error occurred while file upload', {type: "error"});
+              break;
+            case firebase.storage.TaskState.SUCCESS:
+              setIsUploading(false);
+              toast('File uploaded successfully!', {type: "success"})
+              break;
+            default:
+              break;
+          }
+        },
+        error => {
+          toast("Something went wrong in 'uploadTask'", {type: "error"})
+        },
+        () => {
+          uploadTask.snapshot.ref.getDownloadURL()
+          .then(downloadURL => {
+            setDownloadUrl(downloadURL)
+          })
+          .catch(error => console.error(error))
+        }
+      )
+
+
+    }catch(error){
+      console.error(error);
+      toast("Something went wrong", {type: "error"});
+    }
   };
 
   // setting contact to firebase DB
