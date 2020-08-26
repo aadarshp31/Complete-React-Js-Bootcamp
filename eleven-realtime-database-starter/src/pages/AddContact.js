@@ -79,10 +79,10 @@ const AddContact = () => {
       }
       let resizedImage = await readAndCompressImage(file, imageConfig);
 
-      let storageRef = await firebase.storageRef()
+      let storageRef = await firebase.storage.ref()
 
       const uploadTask = storageRef
-        .child('images/' + file.name)
+        .child('images/' + file.name + v4())
         .put(resizedImage, metaData)
 
       uploadTask.on(
