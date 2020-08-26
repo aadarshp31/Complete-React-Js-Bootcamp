@@ -181,6 +181,7 @@ const AddContact = () => {
   // firing when the user click on submit button or the form has been submitted
   const handleSubmit = e => {
     e.preventDefault();
+    isUpdate ? updateContact() : addContact();
 
     // isUpdate wll be true when the user came to update the contact
     // when their is contact then updating and when no contact to update then adding contact
