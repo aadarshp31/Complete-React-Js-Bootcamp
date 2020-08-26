@@ -137,6 +137,16 @@ const AddContact = () => {
   // setting contact to firebase DB
   const addContact = async () => {
     //TODO: add contact method
+    try {
+      firebase
+        .database()
+        .ref("contacts/" + v4())
+        .set({
+          name, email, phoneNumber, star, address, picture: downloadUrl
+        })
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   // to handle update the contact when there is contact in state and the user had came from clicking the contact update icon
