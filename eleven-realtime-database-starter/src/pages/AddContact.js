@@ -79,7 +79,7 @@ const AddContact = () => {
       };
       let resizedImage = await readAndCompressImage(file, imageConfig);
 
-      let storageRef = await firebase.storage.ref();
+      let storageRef = await firebase.storage().ref();
 
       const uploadTask = storageRef
         .child("images/" + file.name + v4())
@@ -115,8 +115,14 @@ const AddContact = () => {
             default:
               break;
           }
+          if(progress == 100) {
+            setIsUploading(false);
+            toast("File uploaded successfully!", { type: "success" });
+          }
         },
         error => {
+          setIsUploading(false);
+          console.error(error)
           toast("Something went wrong in 'uploadTask'", { type: "error" });
         },
         () => {
