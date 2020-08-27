@@ -1,4 +1,5 @@
-//TODO: add firebase configuration and export it
+// firebase config
+export const firebaseConfig = process.env.REACT_APP_FIREBASE_CONFIG;
 
 //image configuration
 export const imageConfig = {
