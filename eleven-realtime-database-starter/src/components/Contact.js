@@ -112,7 +112,7 @@ const Contact = ({ contact, contactKey }) => {
 
           <div className="text-secondary">{contact.phoneNumber}</div>
           <div className="text-secondary">
-            {/* {FIXME: display contact email}  */}
+            {contact.email}
           </div>
 
           <div className="text-info">{contact.address}</div>
