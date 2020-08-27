@@ -41,13 +41,17 @@ const Contacts = () => {
   return (
     <Container className="mt-4">
       {/* Loop through FIREBASE objects  */}
-      <ListGroup>
+      {contacts.length === 0 && !isLoading ? (
+        <div className="Center text-large text-primary">No Contacts in the database</div>
+      ) : (
+        <ListGroup>
         {Object.entries(contacts).map(([key, value]) => (
           <ListGroupItem key={key}>
             <Contact contact={value} contactKey={key} />
           </ListGroupItem>
         ))}
       </ListGroup>
+      )}
       <MdAdd className="fab icon " onClick={AddContact} />
     </Container>
   );
